@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projects - My Portfolio</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <nav>
+            <a href="/">Home</a>
+            <a href="/about">About</a>
+            <a href="/projects">Projects</a>
+            <a href="/contact">Contact</a>
+         </nav>
+    <h1 id="projects-title"><span id="projects-text"></span><span id="projects-dots"></span></h1>
+    <div id="main-content" class="center-content" style="display:none;">
+        <ul>
+            <li>
+                <h3>Project 1</h3>
+                <p>Description of project 1.
+                    <a href="https://github.com/catchphras">View Project</a>
+                </p>
+            </li>
+            <li>
+                <h3>Project 2</h3>
+                <p>Description of project 2.
+                    <a href="https://github.com/catchphras">View Project</a>
+                </p>
+            </li>
+            <li>
+                <h3>Project 3</h3>
+                <p>Description of project 3.
+                    <a href="https://github.com/catchphras">View Project</a>
+                </p>
+            </li>
+        </ul>
+        <p>This is the projects page.</p>
+        <div class="social-media">
+            <a href="https://linkedin.com/in/yourhandle" target="_blank" title="LinkedIn">💼 LinkedIn</a>
+            <a href="https://github.com/yourhandle" target="_blank" title="GitHub">🐙 GitHub</a>
+        </div>
+    </div>
+<script>
+const projectsDots = document.getElementById('projects-dots');
+const projectsText = document.getElementById('projects-text');
+const projectsTitle = 'My Projects';
+let projectsDotCount = 0;
+let projectsDotsInterval, projectsRevealTimeout, projectsRevealInterval;
+function animateProjectsDots() {
+    projectsDotCount = (projectsDotCount + 1) % 4;
+    projectsDots.textContent = '.'.repeat(projectsDotCount);
+}
+function revealProjectsText() {
+    let i = 0;
+    projectsDots.textContent = '';
+    projectsRevealInterval = setInterval(() => {
+        projectsText.textContent = projectsTitle.slice(0, i + 1);
+        i++;
+        if (i === projectsTitle.length) {
+            clearInterval(projectsRevealInterval);
+            // Show main content after header animation
+            document.getElementById('main-content').style.display = '';
+        }
+    }, 120);
+}
+window.onload = function() {
+    projectsText.textContent = '';
+    projectsDots.textContent = '';
+    projectsDotCount = 0;
+    document.getElementById('main-content').style.display = 'none';
+    projectsDotsInterval = setInterval(animateProjectsDots, 400);
+    projectsRevealTimeout = setTimeout(() => {
+        clearInterval(projectsDotsInterval);
+        projectsDots.textContent = '';
+        revealProjectsText();
+    }, 1600);
+};
+</script>
+</body>
+</html>

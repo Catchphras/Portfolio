@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About - My Portfolio</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <style>
+        body {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            text-align: center;
+        }
+        nav {
+            width: 100%;
+            background: #181717;
+            border-bottom: 1px solid #eee;
+            padding: 18px 0 12px 0;
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            font-size: 1.1em;
+            position: sticky;
+            top: 0;
+            z-index: 200;
+        }
+        nav a {
+            text-decoration: none;
+            color: #eee9e9;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+        nav a:hover {
+            color: #0077b5;
+        }
+        .main-content {
+            flex: 1;
+        }
+        .social-media {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 30px;
+        }
+        .social-media a {
+            text-decoration: none;
+            color: #222;
+            font-size: 1.2em;
+            transition: color 0.2s;
+        }
+        .social-media a:hover {
+            color: #0077b5;
+        }
+        .about-img {
+            margin-top: 24px;
+            border-radius: 12px;
+            max-width: 260px;
+            box-shadow: 0 4px 24px rgba(0,0,0,0.10);
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="/">Home</a>
+        <a href="/about">About</a>
+        <a href="/projects">Projects</a>
+        <a href="/contact">Contact</a>
+    </nav>
+    <h1 id="about-title"><span id="about-text"></span><span id="dots"></span></h1>
+    <div id="main-content" class="center-content main-content" style="display:none;">
+        <p>Hello, I'm a passionate web developer with a love for creating dynamic and user-friendly websites. Welcome to my portfolio!</p>
+        <img class="about-img" src="https://st3.depositphotos.com/1011382/12933/i/450/depositphotos_129333936-stock-photo-real-african-man-smiling.jpg" alt="MY IMAGE">
+        <div class="social-media">
+            <a href="https://linkedin.com/in/yourhandle" target="_blank" title="LinkedIn">💼 LinkedIn</a>
+            <a href="https://github.com/yourhandle" target="_blank" title="GitHub">🐙 GitHub</a>
+        </div>
+    </div>
+</body>
+<script>
+// Animation: stall with dots, then reveal 'About Me' one by one
+const dotsSpan = document.getElementById('dots');
+const aboutTextSpan = document.getElementById('about-text');
+const aboutText = 'About Me';
+let dotCount = 0;
+let dotsInterval, revealTimeout, revealInterval;
+
+function animateDots() {
+    dotCount = (dotCount + 1) % 4;
+    dotsSpan.textContent = '.'.repeat(dotCount);
+}
+
+function revealAboutText() {
+    let i = 0;
+    dotsSpan.textContent = '';
+    revealInterval = setInterval(() => {
+        aboutTextSpan.textContent = aboutText.slice(0, i + 1);
+        i++;
+        if (i === aboutText.length) {
+            clearInterval(revealInterval);
+            // Show main content after header animation
+            document.getElementById('main-content').style.display = '';
+        }
+    }, 120);
+}
+
+window.onload = function() {
+    aboutTextSpan.textContent = '';
+    dotsSpan.textContent = '';
+    dotCount = 0;
+    dotsInterval = setInterval(animateDots, 400);
+    // Stall for 1.6s (4 dot cycles), then reveal text
+    revealTimeout = setTimeout(() => {
+        clearInterval(dotsInterval);
+        dotsSpan.textContent = '';
+        revealAboutText();
+    }, 1600);
+};
+</script>
+</html>

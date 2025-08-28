@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact - My Portfolio</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <style>
+        body {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            text-align: center;
+        }
+        nav {
+            width: 100%;
+            background: #181717;
+            border-bottom: 1px solid #eee;
+            padding: 18px 0 12px 0;
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            font-size: 1.1em;
+            position: sticky;
+            top: 0;
+            z-index: 200;
+        }
+        nav a {
+            text-decoration: none;
+            color: #eee9e9;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+        nav a:hover {
+            color: #0077b5;
+        }
+        .main-content {
+            flex: 1;
+        }
+        form {
+            margin-top: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background: #23272f;
+            padding: 32px 28px 24px 28px;
+            border-radius: 14px;
+            box-shadow: 0 4px 24px rgba(0,0,0,0.10);
+            max-width: 400px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        form input[type="text"],
+        form input[type="email"],
+        form textarea {
+            width: 320px;
+            padding: 12px 16px;
+            margin-bottom: 18px;
+            border: 1px solid #444;
+            border-radius: 8px;
+            font-size: 1em;
+            background: #181b20;
+            color: #f3f3f3;
+            transition: border-color 0.2s, box-shadow 0.2s, background 0.2s;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+            outline: none;
+            resize: none;
+        }
+        form input[type="text"]:focus,
+        form input[type="email"]:focus,
+        form textarea:focus {
+            border-color: #0077b5;
+            box-shadow: 0 2px 12px rgba(0,119,181,0.10);
+            background: #23272f;
+            color: #fff;
+        }
+        form textarea {
+            min-height: 100px;
+            max-width: 320px;
+            font-family: inherit;
+        }
+        form button[type="submit"] {
+            background: #0077b5;
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            padding: 12px 32px;
+            font-size: 1em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.2s, box-shadow 0.2s;
+            box-shadow: 0 2px 8px rgba(0,119,181,0.08);
+        }
+        form button[type="submit"]:hover {
+            background: #005f8d;
+            box-shadow: 0 4px 16px rgba(0,119,181,0.13);
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="/">Home</a>
+        <a href="/about">About</a>
+        <a href="/projects">Projects</a>
+        <a href="/contact">Contact</a>
+    </nav>
+    <h1 id="contact-title"><span id="contact-text"></span><span id="dots"></span></h1>
+    <div id="main-content" class="center-content main-content" style="display:none;">
+        <p>Feel free to reach out to me using the form below or connect with me on LinkedIn or GitHub!</p>
+        <form>
+            <input type="text" placeholder="Your Name" required><br><br>
+            <input type="email" placeholder="Your Email" required><br><br>
+            <textarea placeholder="Your Message" required></textarea><br><br>
+            <button type="submit">Send</button>
+        </form>
+        <div class="social-media" style="position: static; background: none; border-top: none; margin-top: 30px; box-shadow: none;">
+            <a href="https://linkedin.com/in/yourhandle" target="_blank" title="LinkedIn">💼 LinkedIn</a>
+            <a href="https://github.com/yourhandle" target="_blank" title="GitHub">🐙 GitHub</a>
+        </div>
+    </div>
+</body>
+<script>
+// Animation: stall with dots, then reveal 'Contact' one by one
+const dotsSpan = document.getElementById('dots');
+const contactTextSpan = document.getElementById('contact-text');
+const contactText = 'Contact';
+let dotCount = 0;
+let dotsInterval, revealTimeout, revealInterval;
+
+function animateDots() {
+    dotCount = (dotCount + 1) % 4;
+    dotsSpan.textContent = '.'.repeat(dotCount);
+}
+
+function revealContactText() {
+    let i = 0;
+    dotsSpan.textContent = '';
+    revealInterval = setInterval(() => {
+        contactTextSpan.textContent = contactText.slice(0, i + 1);
+        i++;
+        if (i === contactText.length) {
+            clearInterval(revealInterval);
+            // Show main content after header animation
+            document.getElementById('main-content').style.display = '';
+        }
+    }, 120);
+}
+
+window.onload = function() {
+    contactTextSpan.textContent = '';
+    dotsSpan.textContent = '';
+    dotCount = 0;
+    dotsInterval = setInterval(animateDots, 400);
+    // Stall for 1.6s (4 dot cycles), then reveal text
+    revealTimeout = setTimeout(() => {
+        clearInterval(dotsInterval);
+        dotsSpan.textContent = '';
+        revealContactText();
+    }, 1600);
+};
+</script>
+</html>

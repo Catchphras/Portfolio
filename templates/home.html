@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Portfolio</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <nav>
+        
+            <a href="/">Home</a>
+            <a href="/about">About</a>
+            <a href="/projects">Projects</a>
+            <a href="/contact">Contact</a>
+         </nav>
+ <h1 id="home-title"><span id="home-text"></span><span id="home-dots"></span></h1>
+ <div class="center-content">
+     <p>This is the home page.</p>
+     <div class="social-media">
+         <a href="https://linkedin.com/in/ofori-mensah-kobina" target="_blank" title="LinkedIn">💼 LinkedIn</a>
+         <a href="https://github.com/catchphras" target="_blank" title="GitHub">🐙 GitHub</a>
+     </div>
+ </div>
+<script>
+const homeDots = document.getElementById('home-dots');
+const homeText = document.getElementById('home-text');
+const homeTitle = 'Welcome to My Portfolio';
+let homeDotCount = 0;
+let homeDotsInterval, homeRevealTimeout, homeRevealInterval;
+function animateHomeDots() {
+    homeDotCount = (homeDotCount + 1) % 4;
+    homeDots.textContent = '.'.repeat(homeDotCount);
+}
+function revealHomeText() {
+    let i = 0;
+    homeDots.textContent = '';
+    homeRevealInterval = setInterval(() => {
+        homeText.textContent = homeTitle.slice(0, i + 1);
+        i++;
+        if (i === homeTitle.length) {
+            clearInterval(homeRevealInterval);
+        }
+    }, 120);
+}
+window.onload = function() {
+    homeText.textContent = '';
+    homeDots.textContent = '';
+    homeDotCount = 0;
+    homeDotsInterval = setInterval(animateHomeDots, 400);
+    homeRevealTimeout = setTimeout(() => {
+        clearInterval(homeDotsInterval);
+        homeDots.textContent = '';
+        revealHomeText();
+    }, 1600);
+};
+</script>
+</body>
+</html>

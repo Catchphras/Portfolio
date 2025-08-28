@@ -1,0 +1,165 @@
+/* Social media links styling */
+.social-media {
+    margin-top: 24px;
+    display: flex;
+    gap: 18px;
+    justify-content: center;
+}
+.social-media a {
+    color: #1c84df;
+    text-decoration: none;
+    font-size: 1.1rem;
+    font-weight: 500;
+    transition: color 0.2s;
+}
+.social-media a:hover {
+    color: #155a8a;
+    text-decoration: underline;
+}
+/* Center content utility for all pages */
+.center-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    width: 100%;
+}
+.center-content form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    max-width: 400px;
+}
+.center-content input,
+.center-content textarea {
+    width: 100%;
+    margin-bottom: 10px;
+}
+#home-title, #projects-title, #contact-title {
+    opacity: 1;
+    transition: none;
+    position: relative;
+    min-height: 2.8em;
+}
+#home-text, #projects-text, #contact-text {
+    letter-spacing: 2px;
+    font-weight: 700;
+}
+#home-dots, #projects-dots, #contact-dots {
+    display: inline-block;
+    min-width: 1.2em;
+    font-weight: 400;
+    letter-spacing: 0.1em;
+    animation: none;
+}
+/* Fade-in animation for About Me title */
+#about-title {
+    opacity: 1;
+    transition: none;
+    position: relative;
+    min-height: 2.8em;
+}
+#about-text {
+    letter-spacing: 2px;
+    font-weight: 700;
+}
+#dots {
+    display: inline-block;
+    min-width: 1.2em;
+    font-weight: 400;
+    letter-spacing: 0.1em;
+    animation: none;
+}
+/* Centered text utility class */
+.center-text {
+    text-align: center;
+    margin: 0 auto 18px auto;
+    max-width: 600px;
+}
+body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    line-height: 1.7;
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(120deg, #1c84df 0%, #a1c4fd 100%);
+    color: #222;
+    min-height: 100vh;
+}
+
+nav {
+    background: rgba(30, 30, 30, 0.95);
+    padding: 16px 0;
+    text-align: center;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+    letter-spacing: 1px;
+}
+
+nav a {
+    color: #fff;
+    margin: 0 18px;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.2s;
+    padding-bottom: 2px;
+    border-bottom: 2px solid transparent;
+}
+nav a:hover {
+    color: #1c84df;
+    border-bottom: 2px solid #1c84df;
+}
+
+h1 {
+    color: #1c84df;
+    text-align: center;
+    margin-top: 32px;
+    font-size: 2.5rem;
+    letter-spacing: 2px;
+    font-weight: 700;
+}
+
+img {
+    display: block;
+    margin: 18px auto 0 auto;
+    max-width: 100%;
+    border-radius: 12px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+}
+
+main, .container {
+    background: rgba(255,255,255,0.92);
+    max-width: 900px;
+    margin: 32px auto 0 auto;
+    border-radius: 14px;
+    box-shadow: 0 6px 32px rgba(0,0,0,0.08);
+    padding: 32px 28px 40px 28px;
+}
+
+h2 {
+    color: #1c84df;
+    margin-top: 24px;
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+p, li {
+    font-size: 1.08rem;
+    margin-bottom: 12px;
+}
+
+button, .btn {
+    background: #1c84df;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    padding: 10px 22px;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.2s;
+    box-shadow: 0 2px 8px rgba(28,132,223,0.08);
+}
+button:hover, .btn:hover {
+    background: #155a8a;
+}
